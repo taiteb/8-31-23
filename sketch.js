@@ -2,9 +2,10 @@ let walkers = [];
 let c;
 
 function setup() {
+  pixelDensity(3)
   c = createCanvas(700, 700);
-  background(51);
-  for (let i = 0; i < 150; i++){
+  background(210);
+  for (let i = 0; i < 150; i++) {
     let newWalker = new Walker();
     walkers.push(newWalker);
   }
@@ -18,31 +19,48 @@ function draw() {
 }
 
 function Walker() {
-  let x = random(100, 600);
-  let y = random(100, 600);
+  let x = random(200, 500);
+  let y = random(200, 500);
   // console.log(x, y);
 
-  let r = floor(random(120));
-  let g = floor(random(255));
-  let b = floor(random(120, 255));
+  let r = floor(random(20, 200));
+  let g = floor(random(10,120));
+  let b = floor(random(80, 150));
 
-  let rstroke = random(5);
+  let rstroke = random(2);
+  let rstep = floor(random(5));
 
   this.update = function () {
-    let r = floor(random(4));
+    let r = floor(random(8));
     // console.log(r)
     switch (r) {
       case 0:
-        x = x + 2;
+        x = x + rstep;
         break;
       case 1:
-        x = x - 2;
+        x = x - rstep;
         break;
       case 2:
-        y = y + 2;
+        y = y + rstep;
         break;
       case 3:
-        y = y - 2;
+        y = y - rstep;
+        break;
+      case 4:
+        x = x + rstep;
+        y = y + rstep;
+        break;
+      case 5:
+        x = x - rstep;
+        y = y + rstep;
+        break;
+      case 6:
+        x = x - rstep;
+        y = y - rstep;
+        break;
+      case 7:
+        x = x + rstep;
+        y = y - rstep;
         break;
     }
     stroke(r, g, b);
@@ -51,6 +69,6 @@ function Walker() {
   }
 }
 
-function mouseClicked(){
-  save(c, `${frameCount}.jpg`)
+function mouseClicked() {
+  save(c, `${frameCount}.png`)
 }
