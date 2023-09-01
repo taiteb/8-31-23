@@ -4,7 +4,7 @@ let c;
 function setup() {
   c = createCanvas(700, 700);
   background(51);
-  for (let i = 0; i < 16; i++) {
+  for (let i = 0; i < 150; i++){
     let newWalker = new Walker();
     walkers.push(newWalker);
   }
@@ -26,6 +26,8 @@ function Walker() {
   let g = floor(random(255));
   let b = floor(random(120, 255));
 
+  let rstroke = random(5);
+
   this.update = function () {
     let r = floor(random(4));
     // console.log(r)
@@ -44,7 +46,7 @@ function Walker() {
         break;
     }
     stroke(r, g, b);
-    strokeWeight(2);
+    strokeWeight(rstroke);
     point(x, y);
   }
 }
