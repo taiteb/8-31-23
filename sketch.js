@@ -3,14 +3,15 @@ let c;
 let colors = [[],[],[],[],[],[],[],[]]
 
 function setup() {
+  colorMode(HSB)
   pixelDensity(3)
   c = createCanvas(500, 500);
   // background(210);
 
   for (let i = 0; i < colors.length; i++){
-    let r = floor(random(90));
-    let g = floor(random(90, 255));
-    let b = floor(random(100, 255));
+    let r = floor(random(85, 170));
+    let g = floor(random(255));
+    let b = floor(random(10, 180));
     colors[i][0] = r;
     colors[i][1] = g;
     colors[i][2] = b;
@@ -30,8 +31,8 @@ function draw() {
 }
 
 function Walker() {
-  let x = random(100, 400);
-  let y = random(100, 400);
+  let x = random(100, 150);
+  let y = random(100, 120);
   // console.log(x, y);
 
   let rcol = floor(random(8))
@@ -50,8 +51,9 @@ function Walker() {
   }
 
   this.update = function () {
-    let rstep = floor(random(3));
-    let rstroke = random(.125, .8);
+    // For best results, step has to be bigger than largest possible diameter by at least 1
+    let rstep = 6;
+    let rstroke = random(.125, 5.5);
     let r = floor(random(8));
     switch (r) {
       case 0:
