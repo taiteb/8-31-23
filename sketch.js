@@ -1,11 +1,22 @@
 let walkers = [];
 let c;
+let colors = [[],[],[],[],[],[],[],[]]
 
 function setup() {
   pixelDensity(3)
-  c = createCanvas(700, 700);
-  background(210);
-  for (let i = 0; i < 150; i++) {
+  c = createCanvas(500, 500);
+  // background(210);
+
+  for (let i = 0; i < colors.length; i++){
+    let r = floor(random(90));
+    let g = floor(random(90, 255));
+    let b = floor(random(100, 255));
+    colors[i][0] = r;
+    colors[i][1] = g;
+    colors[i][2] = b;
+  }
+
+  for (let i = 0; i < 250; i++) {
     let newWalker = new Walker();
     walkers.push(newWalker);
   }
@@ -19,20 +30,29 @@ function draw() {
 }
 
 function Walker() {
-  let x = random(200, 500);
-  let y = random(200, 500);
+  let x = random(100, 400);
+  let y = random(100, 400);
   // console.log(x, y);
 
-  let r = floor(random(20, 200));
-  let g = floor(random(10,120));
-  let b = floor(random(80, 150));
+  let rcol = floor(random(8))
+  let color = colors[rcol]
 
-  let rstroke = random(2);
-  let rstep = floor(random(5));
+  
+
+  let halftoneValues = [0, 15, 45, 75];
+  let halftonePicker = floor(random(4));
+  let halftone = halftoneValues[halftonePicker];
+  let xHT, yHT;
+
+  this.halftoneCalc = function(x, y){
+    xHT = (x*cos(halftone)) + (y*sin(halftone));
+    yHT = (y*cos(halftone)) - (x*sin(halftone));
+  }
 
   this.update = function () {
+    let rstep = floor(random(3));
+    let rstroke = random(.125, .8);
     let r = floor(random(8));
-    // console.log(r)
     switch (r) {
       case 0:
         x = x + rstep;
@@ -63,9 +83,11 @@ function Walker() {
         y = y - rstep;
         break;
     }
-    stroke(r, g, b);
+    stroke(color);
+    console.log(color)
     strokeWeight(rstroke);
-    point(x, y);
+    this.halftoneCalc(x, y);
+    point(xHT, yHT);
   }
 }
 
