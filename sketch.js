@@ -1,7 +1,8 @@
 let walkers = [];
+let c;
 
 function setup() {
-  createCanvas(700, 700);
+  c = createCanvas(700, 700);
   background(51);
   for (let i = 0; i < 150; i++){
     let newWalker = new Walker();
@@ -10,10 +11,10 @@ function setup() {
 }
 
 function draw() {
-  for (let i = 0; i < walkers.length; i++){
+  for (let i = 0; i < walkers.length; i++) {
     walkers[i].update();
   }
-// console.log(walkers)
+  // console.log(walkers)
 }
 
 function Walker() {
@@ -27,7 +28,7 @@ function Walker() {
 
   let rstroke = random(5);
 
-  this.update = function(){
+  this.update = function () {
     let r = floor(random(4));
     // console.log(r)
     switch (r) {
@@ -48,4 +49,8 @@ function Walker() {
     strokeWeight(rstroke);
     point(x, y);
   }
+}
+
+function mouseClicked(){
+  save(c, `${frameCount}.jpg`)
 }
