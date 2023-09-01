@@ -2,8 +2,9 @@ let walkers = [];
 let c;
 
 function setup() {
+  pixelDensity(3)
   c = createCanvas(700, 700);
-  // background(51);
+  background(210);
   for (let i = 0; i < 150; i++) {
     let newWalker = new Walker();
     walkers.push(newWalker);
@@ -22,12 +23,12 @@ function Walker() {
   let y = random(200, 500);
   // console.log(x, y);
 
-  let r = floor(random(120));
-  let g = floor(random(255));
-  let b = floor(random(120, 255));
+  let r = floor(random(20, 200));
+  let g = floor(random(10,120));
+  let b = floor(random(80, 150));
 
-  let rstroke = random(5);
-  let rstep = floor(random(5))
+  let rstroke = random(2);
+  let rstep = floor(random(5));
 
   this.update = function () {
     let r = floor(random(8));
