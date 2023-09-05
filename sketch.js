@@ -66,9 +66,10 @@ function Walker() {
     }
   }
 
-  this.triangleCalculator = function (xC, yC) {
-    
-  }
+  // To-Do: 
+  // this.triangleCalculator = function (xC, yC) {
+
+  // }
 
   this.update = function () {
     let rstep = 4;
